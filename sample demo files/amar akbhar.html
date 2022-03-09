@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+
+
+
+</body>
+<script>
+        let friend1 = {
+            name: "Amar",
+            work : "singer",
+            lives: "Goa",
+        
+        }
+
+        let friend2 ={
+            name : "Akbar",
+            work : "chef",
+            lives : "Mumbai",
+        }
+        
+        let friend3 ={
+            name : "Anthony",
+            work : "Magician",
+            lives : "Kashmir",
+        }
+
+
+        function borrow (work)
+        {
+            console.log(`Name: ${this.name}, But now I'm a ${work}`);
+        }
+
+        borrow.call(friend2,friend1.work);
+
+
+</script>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title> 
+    <style>
+     
+      #dice{
+        /* border: 1px solid red; */
+        width: 90px;
+        margin: auto;
+        margin-top: 50px;
+        
+      }
+      #throw_dice{
+        background-color: blue;
+        height: 30px;
+        width: 100px;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        
+
+        
+      }
+      #input{
+        border: 1px solid red;
+        width: 100px;
+        height: 100px;
+        margin: auto;
+        margin-top: 100px;
+        font-size: 30px;
+        font-weight: 800;
+        justify-content: center;
+        
+        
+        
+      }
+      input{
+        /* border: 1px solid red; */
+        width: 100px;
+        height: 100px;
+        
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="input" >
+      <input  type="text">
+    </div>
+    
+    <div id="dice">
+      <!--Create a button that says, 'Throw dice' button. Give this button HTML id as "throw_dice"-->
+      <button id="throw_dice">ROLL</button>
+    </div>
+  </body>
+</html>
+<script>
+
+        var dice = {
+            sides: 6,
+            roll: function () {
+            var numbers = Math.floor(Math.random() * this.sides) + 1;
+            return numbers;
+            }
+       }
+
+
+    document.querySelector("#throw_dice").addEventListener("click", inputboxprint );
+
+    function inputboxprint(p)
+    {
+      var roll = document.querySelector("#input");
+      roll.innerHTML = p; 
+    }
+
+    document.querySelector("#throw_dice").addEventListener("click",function(){
+       
+      var roll = dice.roll();
+
+      if(roll==6)
+      {
+        document.querySelector("#input").style.color = "green";
+      }
+      else if(roll==1)
+      {
+        document.querySelector("#input").style.color = "yellow";
+      }
+      else{
+        document.querySelector("#input").style.color = "red";
+      }
+      inputboxprint(roll);
+    })
+    
+
+    
+</script>
