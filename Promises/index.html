@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+
+</head>
+<style>
+     body{
+            background-image: url("https://www.eatthis.com/wp-content/uploads/sites/4/2022/01/mcdonalds-big-mac-fries.jpg?quality=82&strip=all");
+            width: 100%;
+            background-position: 100%;
+            background-repeat: no-repeat;
+            background-size: 100%;
+        } 
+    #container{
+        border: 1px solid red;
+        background-color: red;
+        border-radius: 10px;
+        margin: auto;
+        width: 300px;
+        height: 100px;
+        margin-top: 200px;
+        
+        
+        /* display: flex; */
+    }
+    #food{
+            height: 30px;
+            width: 200px;
+            background-color: white;
+            color: black;
+            font-size: 20px;
+            margin-left: 50px;  
+            border-radius: 10px;
+            margin-top: 10px;
+           
+    }
+    #orderfood{
+            height: 30px;
+            width: 30%;
+            background-color: blue;
+            color: white;
+            font-size: 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 20px;
+            margin-left: 100px; 
+    }
+    #orderfood:hover{
+        background-color: yellow;
+        color: black;
+    }
+    #img{
+        height: 10px;
+        width: 10px;
+    }
+    
+    #screen{
+        /* border: 5px solid teal; */
+        height: 300px;
+        width: 300px;
+        /* margin-bottom: 400px; */
+        
+    }
+    .foodimg{
+        width: 200px;
+        height: 200px;
+
+    }
+    
+  
+</style>
+<body>
+    <div id="container">
+        <div>
+        <select id="food">
+            <option value="chick">Chicken Pakoda</option>
+            <option value="fries">Fries</option>
+            <option value="Burger">Burger</option>
+            <option value="Pizza">Pizza</option>
+        </select>
+        </div>
+        <div>
+        <button id="orderfood" onclick="orderfood()">Order</button>
+        </div>
+    </div>
+        <div id="screen">
+            
+        </div>
+   
+    
+        
+</body>
+</html>
+<script>    
+        function get(id){
+            return document.getElementById(id).value;
+        }
+        let container = document.getElementById("container1");
+
+    async function orderfood()
+    {
+        let food = get("food");
+        console.log(food);
+        let status = "open";
+        let foodpromise = new Promise(function(resolve,reject){
+            let time = Math.random() * 1000;
+
+            if(status === "closed"){
+                reject("shop closed, Go Home")
+            }
+            else{
+              setTimeout(function() {
+                  resolve(food);
+              }, time);
+            }
+        });
+
+            
+            foodpromise.then(function(res){
+
+            console.log(`${res}is ready!!!!`);
+            
+            if(res === "chick")
+            {
+                console.log(res)
+                var miniDiv = document.createElement("div")
+                miniDiv.setAttribute("class","div")
+                
+                var img = document.createElement("img");
+
+                img.src="https://www.whiskaffair.com/wp-content/uploads/2020/06/Chicken-Pakora-2-3.jpg"
+
+                img.setAttribute("class","foodimg")
+                // img.height =`40px`;
+                // img.width = `40px`;
+
+                var name = document.createElement("div")
+                name.innerHTML="Chicken Pakoda is ready"
+
+
+                document.querySelector("#screen").append(img,name);
+                container.innerHTML= null;
+            }   
+            if(res === "fries")
+            {
+                console.log(res)
+                var miniDiv = document.createElement("div")
+                miniDiv.setAttribute("class","div")
+                
+                var img = document.createElement("img");
+
+                img.src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFb2g1zDHMZeLb3yIWVBVh1P6Q-T_-OuVY9IAxV4XrzviTzqBPkGtWwB1YAcuG1ftD2r0&usqp=CAU"
+
+                img.setAttribute("class","foodimg")
+                // img.height =`40px`;
+                // img.width = `40px`;
+
+                var name = document.createElement("div")
+                name.innerHTML="Fries is ready"
+
+
+                document.querySelector("#screen").append(img,name);
+                container.innerHTML= null;
+            }
+            if(res === "Burger")
+            {
+                console.log(res)
+                var miniDiv = document.createElement("div")
+                miniDiv.setAttribute("class","div")
+                
+                var img = document.createElement("img");
+
+                img.src="https://imgs.search.brave.com/5RUrjCP4OuNd_GJ1UM2afDaSXXKtOZbG3EdY--5xjnk/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9jbXgu/d2VpZ2h0d2F0Y2hl/cnMuY29tL2Fzc2V0/cy1wcm94eS93ZWln/aHQtd2F0Y2hlcnMv/aW1hZ2UvdXBsb2Fk/L3YxNTk0NDA2Njgz/L3Zpc2l0b3Itc2l0/ZS9wcm9kL2NhL2J1/cmdlcnNfbWFzdGhl/YWRfeHRreGZ0"
+
+                img.setAttribute("class","foodimg")
+                // img.height =`40px`;
+                // img.width = `40px`;
+
+                var name = document.createElement("div")
+                name.innerHTML="Burger is ready"
+
+
+                document.querySelector("#screen").append(img,name);
+            }
+            if(res === "Pizza")
+            {
+                console.log(res)
+                var miniDiv = document.createElement("div")
+                miniDiv.setAttribute("class","div")
+                
+                var img = document.createElement("img");
+
+                img.src="https://api.pizzahut.io/v1/content/en-in/in-1/images/promo/one-plus-one.c6fc90466dee0eea9cbdcce2afaf83f5.1.jpg"
+
+                img.setAttribute("class","foodimg")
+                // img.height =`40px`;
+                // img.width = `40px`;
+
+                var name = document.createElement("div")
+                name.innerHTML="Pizza is ready"
+
+
+                document.querySelector("#screen").append(img,name);
+            }
+            if(res === "Fries")
+            {
+                console.log(res)
+                var miniDiv = document.createElement("div")
+                miniDiv.setAttribute("class","div")
+                
+                var img = document.createElement("img");
+
+                img.src="https://api.pizzahut.io/v1/content/en-in/in-1/images/promo/one-plus-one.c6fc90466dee0eea9cbdcce2afaf83f5.1.jpg"
+
+                img.setAttribute("class","foodimg")
+                // img.height =`40px`;
+                // img.width = `40px`;
+
+                var name = document.createElement("div")
+                name.innerHTML="Pizza is ready"
+
+
+                document.querySelector("#screen").append(img,name);
+            }
+           
+        });
+            
+            
+        
+       foodpromise.catch(function(error){
+            // let res = await foodpromise;
+            console.log("error:", error);
+        })
+    }
+    </script>
