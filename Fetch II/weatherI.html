@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #container>:last-child{
+        
+        margin-left: 1000px;
+        margin-top: -400px;
+        /* border: 5px solid red; */
+    }
+    #city{
+        width:auto;
+        height: 20px;   
+        display: flex;
+    }
+    #button{
+        color: white;
+        background-color: blue;
+        width: auto;
+        height: 30px;
+        border-radius: 10px;
+        margin-top: 10px;
+
+
+    }
+    #button:hover{
+        background-color: red;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <input type="text" placeholder="enter a city" id="city">
+    <button id="button" onclick="getWeather()">Get Weather</button>
+    <div id="container"> </div>
+
+
+    <!-- <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com/divi-discount/"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">google map on web page</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></div> -->
+
+
+
+</body>
+</html>
+<script>
+   
+//url -      api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+// key -    22bf09a96138c67f80553d87364575cf
+    // let url =(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=22bf09a96138c67f80553d87364575cf`)
+        
+    let container = document.getElementById("container");
+    
+    async function getWeather(){
+            try{
+            let city = document.getElementById("city").value; 
+
+            let res = await fetch(
+               `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=22bf09a96138c67f80553d87364575cf&units=metric`);
+            let data = await res.json();
+            appendData(data);
+            console.log("data:",data);
+            }
+            catch(err)
+            {
+                console.log("err:",err);
+            }
+
+        }
+
+        function appendData(data){
+
+            container.innerHTML = null;
+
+            let name = document.createElement('h3');
+            name.innerText = "Name:"+data.name;
+
+
+            let mintemp = document.createElement('h3');
+            mintemp.innerText ="Min Temp:"+data.main.temp_min;
+
+            let maxtemp = document.createElement('h3');
+            maxtemp.innerText ="Max Temp:"+data.main.temp_max;
+
+            let degree = document.createElement('h3');
+            degree.innerText ="Wind degree:"+ data.wind.deg;
+            let gust = document.createElement('h3');
+            gust.innerText = "Wind gust:"+data.wind.gust;
+            let speed = document.createElement('h3');
+            speed.innerText = "Wind speed:"+data.wind.speed;
+
+            let clouds = document.createElement('h3');
+            clouds.innerText ="Cloud:"+data.clouds.all;
+
+            let sunrise = document.createElement('h3');
+             sunrise.innerText ="Sunrise:"+data.sys.sunrise;
+
+            let sunset = document.createElement('h3');  
+            sunset.innerText ="Sunset:"+data.sys.sunset;
+
+            let iframe = document.createElement('iframe')
+
+            iframe.src =`https://maps.google.com/maps?q=${data.name}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+
+            iframe.height= `600px`;
+            iframe.width = `400px`;
+            container.append(name,mintemp,maxtemp,degree,gust,speed,clouds,sunrise,sunset,iframe);
+
+
+        } 
+
+</script>
